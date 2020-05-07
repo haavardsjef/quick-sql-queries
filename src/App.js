@@ -25,7 +25,7 @@ function App() {
   return (
     <div>
       <div className="container mt-5">
-        <h1 className="display-3">Generate SQL table</h1>
+        <h1 className="display-4">Generate SQL "CREATE TABLE" query</h1>
         <form id="gen-table">
           <div className="form-row">
             <div className="col-12 col-md-6">
