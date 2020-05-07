@@ -26,20 +26,6 @@ function App() {
     <div>
       <div className="container mt-5">
         <h1 className="display-4">Generate SQL "CREATE TABLE" query</h1>
-        <form id="gen-table">
-          <div className="form-row">
-            <div className="col-12 col-md-6">
-              <input
-                id="table-name"
-                type="text"
-                className="form-control"
-                placeholder="Table Name"
-                autoComplete="off"
-              />
-            </div>
-          </div>
-          <Columns numCols={numCols} />
-        </form>
         <button
           type="button"
           className="btn btn-primary mt-1"
@@ -54,6 +40,21 @@ function App() {
         >
           Add column
         </button>
+        <form id="gen-table" class="mt-3">
+          <div className="form-row">
+            <div className="col-12 col-md-6">
+              <input
+                id="table-name"
+                type="text"
+                className="form-control"
+                placeholder="Table Name"
+                autoComplete="off"
+              />
+            </div>
+          </div>
+          <Columns numCols={numCols} />
+        </form>
+
         <textarea
           className="form-control mt-5"
           id="generate-table-sql"
