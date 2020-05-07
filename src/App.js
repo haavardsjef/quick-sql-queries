@@ -1,49 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 
 function App() {
+  const [numCols, setNumCols] = useState(1);
   return (
     <div>
-      <div class="container mt-5">
-        <h1 class="display-3">Generate SQL table</h1>
+      <div className="container mt-5">
+        <h1 className="display-3">Generate SQL table</h1>
         <form id="gen-table">
-          <div class="form-row">
-            <div class="col-12 col-md-6">
+          <div className="form-row">
+            <div className="col-12 col-md-6">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Table Name"
               />
             </div>
           </div>
-          <div class="form-row mt-1">
-            <div class="col">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Column name"
-              />
-            </div>
-            <div class="col">
-              <select id="inputState" class="form-control">
-                <option selected>int</option>
-                <option>varchar(255)</option>
-              </select>
-            </div>
-          </div>
+          <Columns numCols={numCols} />
         </form>
-        <button type="button" class="btn btn-primary mt-1">
+        <button type="button" className="btn btn-primary mt-1">
           Generate SQL query
         </button>
-        <button type="button" class="btn btn-secondary mt-1 ml-1" onclick="">
+        <button
+          type="button"
+          className="btn btn-secondary mt-1 ml-1"
+          onClick={() => setNumCols(numCols + 1)}
+        >
           Add column
         </button>
-        <textarea class="form-control mt-5" name="" id="" cols="30" rows="10">
-          CREATE TABLE Persons ( PersonID int, LastName varchar(255), FirstName
-          varchar(255), Address varchar(255), City varchar(255) );
-        </textarea>
+        <textarea
+          className="form-control mt-5"
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+        ></textarea>
       </div>
     </div>
   );
+}
+
+function Columns({ numCols }) {
+  var columns = [];
+  for (let i = 0; i < numCols; i++) {
+    columns.push(
+      <div className="form-row mt-1">
+        <div className="col">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Column name"
+          />
+        </div>
+        <div className="col">
+          <select id="inputState" className="form-control">
+            <option>int</option>
+            <option>varchar(255)</option>
+          </select>
+        </div>
+      </div>
+    );
+  }
+
+  return columns;
 }
 
 export default App;
