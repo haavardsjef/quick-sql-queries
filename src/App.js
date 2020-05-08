@@ -22,6 +22,50 @@ function App() {
     textField.value = textanswer;
   }
 
+  function generateDummyQuery() {
+    const names = [
+      "'John'",
+      "'William'",
+      "'James'",
+      "'Charles'",
+      "'George'",
+      "'Robert'",
+      "'Edward'",
+      "'Harry'",
+      "'Daniel'",
+      "'Alfred'",
+      "'Francis'",
+    ];
+    const tableName = document.getElementById("table-name").value;
+    var textanswer = "INSERT INTO " + tableName + " VALUES\n";
+
+    for (let i = 0; i < 10; i++) {
+      textanswer += "\t(";
+      for (let j = 0; j < numCols; j++) {
+        const type = document.getElementById(j + "type").value;
+
+        if (type === "int") {
+          textanswer += i;
+        }
+        if (type === "varchar(255)") {
+          textanswer += names[Math.floor(Math.random() * names.length)];
+        }
+        if (j !== numCols - 1) {
+          textanswer += ",";
+        }
+      }
+      textanswer += ")";
+      if (i !== 10 - 1) {
+        textanswer += ",\n";
+      } else {
+        textanswer += ";";
+      }
+    }
+
+    const textField = document.getElementById("generate-table-sql");
+    textField.value = textanswer;
+  }
+
   return (
     <div>
       <div className="container mt-5">
@@ -32,6 +76,13 @@ function App() {
           onClick={() => generateTableQuery()}
         >
           Generate SQL query
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary mt-1 ml-1"
+          onClick={() => generateDummyQuery()}
+        >
+          Generate dummy data
         </button>
         <button
           type="button"
